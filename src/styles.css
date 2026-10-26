@@ -1,0 +1,247 @@
+/* react-leaflet-curved-labels: studio styles.
+   Override the custom properties below to match your site. */
+
+.clp-panel,
+.clp-launcher {
+  --clp-bg: #ffffff;
+  --clp-surface: #f4f4f5;
+  --clp-fg: #18181b;
+  --clp-muted: #71717a;
+  --clp-border: #e4e4e7;
+  --clp-accent: #f59e0b;
+  --clp-on-accent: #1c1917;
+  --clp-danger: #dc2626;
+  --clp-radius: 16px;
+  --clp-font: system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --clp-z: 1100;
+  font-family: var(--clp-font);
+  color: var(--clp-fg);
+  box-sizing: border-box;
+}
+
+.clp-panel *,
+.clp-panel *::before,
+.clp-panel *::after {
+  box-sizing: inherit;
+}
+
+.clp-panel[data-clp-theme='dark'],
+.clp-launcher[data-clp-theme='dark'] {
+  --clp-bg: #1c1a19;
+  --clp-surface: #0f0e0d;
+  --clp-fg: #f4f4f5;
+  --clp-muted: #a1a1aa;
+  --clp-border: #2e2b29;
+  --clp-danger: #f87171;
+}
+
+@media (prefers-color-scheme: dark) {
+  .clp-panel[data-clp-theme='auto'],
+  .clp-launcher[data-clp-theme='auto'] {
+    --clp-bg: #1c1a19;
+    --clp-surface: #0f0e0d;
+    --clp-fg: #f4f4f5;
+    --clp-muted: #a1a1aa;
+    --clp-border: #2e2b29;
+    --clp-danger: #f87171;
+  }
+}
+
+.clp-launcher {
+  position: fixed;
+  z-index: var(--clp-z);
+  bottom: 24px;
+  left: 24px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 40px;
+  padding: 0 16px;
+  border: 1px solid var(--clp-border);
+  border-radius: 999px;
+  background: var(--clp-bg);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+  transition: border-color 0.15s ease;
+}
+.clp-launcher svg { color: var(--clp-accent); }
+.clp-launcher:hover { border-color: var(--clp-accent); }
+
+.clp-panel {
+  position: fixed;
+  z-index: calc(var(--clp-z) + 1);
+  bottom: 24px;
+  left: 24px;
+  width: 340px;
+  max-height: calc(100vh - 48px);
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--clp-border);
+  border-radius: var(--clp-radius);
+  background: var(--clp-bg);
+  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.25);
+  font-size: 13px;
+}
+
+.clp-launcher[data-clp-position='bottom-right'],
+.clp-panel[data-clp-position='bottom-right'] {
+  left: auto;
+  right: 24px;
+}
+
+@media (max-width: 639px) {
+  .clp-launcher { left: 12px; bottom: 80px; }
+  .clp-launcher[data-clp-position='bottom-right'] { left: auto; right: 12px; }
+  .clp-panel,
+  .clp-panel[data-clp-position='bottom-right'] {
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: auto;
+    max-height: 62vh;
+    border-radius: var(--clp-radius) var(--clp-radius) 0 0;
+  }
+}
+
+.clp-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px 16px 12px;
+}
+.clp-title { margin: 0; font-size: 14px; font-weight: 700; }
+.clp-status { margin: 2px 0 0; font-size: 12px; color: var(--clp-muted); }
+
+.clp-icon-button {
+  width: 36px;
+  height: 36px;
+  margin-right: -6px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--clp-muted);
+  cursor: pointer;
+}
+.clp-icon-button:hover { background: var(--clp-surface); color: var(--clp-fg); }
+
+.clp-tabs {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 1fr;
+  gap: 2px;
+  margin: 0 16px;
+  padding: 4px;
+  border: 1px solid var(--clp-border);
+  border-radius: 12px;
+  background: var(--clp-surface);
+}
+.clp-tab {
+  min-width: 0;
+  height: 32px;
+  padding: 0 8px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--clp-muted);
+  font: inherit;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+}
+.clp-tab:hover { color: var(--clp-fg); }
+.clp-tab[aria-selected='true'] {
+  background: var(--clp-bg);
+  color: var(--clp-fg);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.12);
+}
+
+.clp-body {
+  flex: 1;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  touch-action: pan-y;
+  padding: 12px 16px 8px;
+}
+.clp-hint { margin: 0 0 8px; font-size: 12px; line-height: 1.5; color: var(--clp-muted); }
+
+.clp-group { margin-top: 16px; }
+.clp-group:first-of-type { margin-top: 8px; }
+.clp-group-title {
+  margin: 0 0 10px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--clp-muted);
+}
+
+.clp-field + .clp-field { margin-top: 12px; }
+.clp-field label { display: block; font-size: 12px; font-weight: 600; }
+.clp-field-row { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; }
+.clp-field output {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+  color: var(--clp-muted);
+}
+.clp-range { width: 100%; height: 24px; margin: 4px 0 0; accent-color: var(--clp-accent); cursor: pointer; }
+.clp-input {
+  width: 100%;
+  height: 36px;
+  margin-top: 6px;
+  padding: 0 10px;
+  border: 1px solid var(--clp-border);
+  border-radius: 8px;
+  background: var(--clp-surface);
+  color: var(--clp-fg);
+  font: inherit;
+  font-size: 14px;
+}
+.clp-input:focus { outline: 2px solid var(--clp-accent); outline-offset: -1px; }
+
+.clp-error { margin: 0; padding: 8px 16px 0; font-size: 12px; color: var(--clp-danger); }
+
+.clp-footer {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 16px max(12px, env(safe-area-inset-bottom));
+  border-top: 1px solid var(--clp-border);
+}
+.clp-spacer { flex: 1; }
+.clp-button {
+  height: 36px;
+  padding: 0 12px;
+  border: 1px solid var(--clp-border);
+  border-radius: 8px;
+  background: transparent;
+  color: var(--clp-fg);
+  font: inherit;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.clp-button:hover:not(:disabled) { background: var(--clp-surface); }
+.clp-button:disabled { opacity: 0.4; cursor: default; }
+.clp-button-quiet { border-color: transparent; padding: 0 6px; color: var(--clp-muted); }
+.clp-button-primary { border-color: var(--clp-accent); background: var(--clp-accent); color: var(--clp-on-accent); font-weight: 700; padding: 0 16px; }
+.clp-button-primary:hover:not(:disabled) { background: var(--clp-accent); filter: brightness(1.08); }
+
+.clp-panel :focus-visible { outline: 2px solid var(--clp-accent); outline-offset: 2px; }
+
+/* Map labels fade in once, on their own group, so the zoom fade can still set opacity */
+.clp-fade-in { animation: clp-fade-in 0.5s ease-out both; }
+@keyframes clp-fade-in { from { opacity: 0; } to { opacity: 1; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .clp-fade-in { animation: none; }
+}

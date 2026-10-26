@@ -1,0 +1,74 @@
+{
+  "name": "react-leaflet-curved-labels",
+  "version": "0.1.0",
+  "description": "Big curved text labels for react-leaflet maps, with an in-map studio to place them by dragging.",
+  "keywords": [
+    "leaflet",
+    "react-leaflet",
+    "map",
+    "label",
+    "curved text",
+    "textPath",
+    "cartography",
+    "rtl"
+  ],
+  "license": "MIT",
+  "author": "DelgshSeli",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DelgshSeli/react-leaflet-curved-labels.git"
+  },
+  "type": "module",
+  "sideEffects": [
+    "*.css"
+  ],
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    },
+    "./server": {
+      "types": "./dist/server.d.ts",
+      "import": "./dist/server.js",
+      "require": "./dist/server.cjs"
+    },
+    "./styles.css": "./dist/styles.css"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "tsup && cp src/styles.css dist/styles.css",
+    "typecheck": "tsc --noEmit",
+    "test": "tsx --test tests/*.test.ts",
+    "example": "vite examples/basic",
+    "prepublishOnly": "npm run typecheck && npm test && npm run build"
+  },
+  "peerDependencies": {
+    "leaflet": "^1.9.0",
+    "react": "^18.2.0 || ^19.0.0",
+    "react-dom": "^18.2.0 || ^19.0.0",
+    "react-leaflet": "^4.2.0 || ^5.0.0"
+  },
+  "devDependencies": {
+    "@types/leaflet": "1.9.22",
+    "@types/node": "^22.15.0",
+    "@types/react": "19.2.2",
+    "@types/react-dom": "19.2.2",
+    "@vitejs/plugin-react": "5.0.0",
+    "leaflet": "1.9.4",
+    "react": "19.2.4",
+    "react-dom": "19.2.4",
+    "react-leaflet": "5.0.0",
+    "tsup": "8.5.0",
+    "tsx": "4.20.3",
+    "typescript": "5.9.3",
+    "vite": "7.1.0"
+  }
+}
