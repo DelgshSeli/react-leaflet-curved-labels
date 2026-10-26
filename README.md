@@ -8,6 +8,8 @@ Large curved text labels for [react-leaflet](https://react-leaflet.js.org/) maps
 - You choose where labels are stored. Server-side helpers validate stored data, so a bad value can never break the map.
 - Written in TypeScript, works with React 18 and 19 and react-leaflet 4 and 5, and is ready for the Next.js App Router.
 
+**[Try the live demo](https://delgshseli.github.io/react-leaflet-curved-labels/)**. Your edits are saved only in your own browser.
+
 ![The studio open beside a map, with the curved label KURDISTAN being placed](docs/studio-light.png)
 
 | Labels only | Dark theme, mid-drag | On a phone |
